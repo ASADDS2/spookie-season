@@ -68,7 +68,7 @@ function Index() {
               <div className="topic-bottom"><span className={`topic-card__score${item.id in scores ? "" : " topic-card__score--pending"}`}>{item.id in scores ? <><Check size={13} /> {scores[item.id]}/5</> : "Not played"}</span><ArrowUpRight size={18} /></div>
             </Button>)}
           </div>
-          {completed === topics.length ? <button type="button" className="btn btn--primary" onClick={() => setScreen("finalResult")}>See final result</button> : completed > 0 && <p className="progress-hint">{completed} of {topics.length} topics completed</p>}
+          {completed === topics.length ? <Button variant="quiz" size="quiz" type="button" className="btn btn--primary" onClick={() => setScreen("finalResult")}>See final result</Button> : completed > 0 && <p className="progress-hint">{completed} of {topics.length} topics completed</p>}
           </section>
           <footer className="season-footer"><Ghost size={14} /><span>A few facts. A few frights. A good time.</span></footer>
         </main>}
@@ -77,27 +77,27 @@ function Index() {
           <p className="quiz-progress">Question {questionIndex + 1} / {topic.questions.length}</p>
           <div className="question-progress" aria-label={`Question ${questionIndex + 1} of 5`}>{topic.questions.map((item, index) => <span key={item.id} className={index <= questionIndex ? "is-active" : ""} />)}</div>
           <h1 className="question">{question.text}</h1>
-          <div className="options">{question.options.map((option, index) => <button key={option} type="button" disabled={selected !== null} className={`option${selected !== null ? ` option--locked${index === question.correctIndex ? " option--correct" : index === selected ? " option--wrong" : ""}` : ""}`} onClick={() => {
+          <div className="options">{question.options.map((option, index) => <Button variant="quiz" size="quiz" key={option} type="button" disabled={selected !== null} className={`option${selected !== null ? ` option--locked${index === question.correctIndex ? " option--correct" : index === selected ? " option--wrong" : ""}` : ""}`} onClick={() => {
             if (selected !== null) return;
             setSelected(index); if (index === question.correctIndex) setCorrect(value => value + 1);
-          }}><span className="option__letter">{String.fromCharCode(65 + index)}</span><span className="option__text">{option}</span></button>)}</div>
+          }}><span className="option__letter">{String.fromCharCode(65 + index)}</span><span className="option__text">{option}</span></Button>)}</div>
           {selected !== null && <>
             <div className={`feedback ${selected === question.correctIndex ? "feedback--ok" : "feedback--no"}`} aria-live="polite"><p className="feedback__label">{selected === question.correctIndex ? "Correct!" : "Not quite"}</p><p className="feedback__text">{question.explanation}</p></div>
-            <button type="button" className="btn btn--primary" onClick={() => {
+            <Button variant="quiz" size="quiz" type="button" className="btn btn--primary" onClick={() => {
               if (questionIndex === topic.questions.length - 1) { storeScores({ ...scores, [topic.id]: correct }); setScreen("topicResult"); }
               else { setQuestionIndex(value => value + 1); setSelected(null); }
-            }}>{questionIndex === topic.questions.length - 1 ? "See topic score" : "Next"}</button>
+            }}>{questionIndex === topic.questions.length - 1 ? "See topic score" : "Next"}</Button>
           </>}
         </main>}
         {screen === "topicResult" && topic && <main className="screen screen--result">
           <p className="eyebrow">{topic.icon} {topic.title}</p><h1 className="title">Topic complete</h1><p className="score-big">{scores[topic.id]}/{topic.questions.length}</p>
           <p className="lede">{correct === topic.questions.length ? "Perfect score! " : ""}You can replay this topic anytime; the new score replaces the old one.</p>
-          <button type="button" className="btn btn--primary" onClick={() => setScreen("home")}>Back to home</button>
+          <Button variant="quiz" size="quiz" type="button" className="btn btn--primary" onClick={() => setScreen("home")}>Back to home</Button>
         </main>}
         {screen === "finalResult" && <main className="screen screen--final">
           <p className="eyebrow">Final result</p><h1 className="title title--glow">{title}</h1><p className="score-big">{total}/20</p>
           <p className="lede">Four topics, twenty questions, and a title from beyond. Dare to try again?</p>
-          <button type="button" className="btn btn--primary" onClick={() => { storeScores({}); setScreen("home"); setTopicId(null); setQuestionIndex(0); setSelected(null); setCorrect(0); }}>Play again</button>
+          <Button variant="quiz" size="quiz" type="button" className="btn btn--primary" onClick={() => { storeScores({}); setScreen("home"); setTopicId(null); setQuestionIndex(0); setSelected(null); setCorrect(0); }}>Play again</Button>
         </main>}
       </div>
     </>
