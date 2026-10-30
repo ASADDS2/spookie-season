@@ -1,0 +1,17 @@
+CREATE TABLE public.quiz_players (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), nickname text NOT NULL CHECK (char_length(nickname) BETWEEN 2 AND 24), score integer NOT NULL DEFAULT 0 CHECK (score BETWEEN 0 AND 20), created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT ON public.quiz_players TO anon, authenticated;
+GRANT ALL ON public.quiz_players TO service_role;
+ALTER TABLE public.quiz_players ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Public rankings" ON public.quiz_players FOR SELECT TO anon, authenticated USING (true);
+CREATE TABLE public.quiz_guest_sessions (token_hash text PRIMARY KEY, player_id uuid NOT NULL REFERENCES public.quiz_players(id) ON DELETE CASCADE);
+GRANT ALL ON public.quiz_guest_sessions TO service_role;
+ALTER TABLE public.quiz_guest_sessions ENABLE ROW LEVEL SECURITY;
+CREATE TABLE public.quiz_correct_answers (player_id uuid NOT NULL REFERENCES public.quiz_players(id) ON DELETE CASCADE, question_id text NOT NULL, PRIMARY KEY(player_id, question_id));
+GRANT ALL ON public.quiz_correct_answers TO service_role;
+ALTER TABLE public.quiz_correct_answers ENABLE ROW LEVEL SECURITY;
+CREATE FUNCTION public.register_quiz_guest(p_nickname text, p_hash text) RETURNS SETOF public.quiz_players LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$ DECLARE p public.quiz_players; BEGIN INSERT INTO public.quiz_players(nickname) VALUES (p_nickname) RETURNING * INTO p; INSERT INTO public.quiz_guest_sessions(token_hash,player_id) VALUES(p_hash,p.id); RETURN NEXT p; END; $$;
+REVOKE ALL ON FUNCTION public.register_quiz_guest(text,text) FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.register_quiz_guest(text,text) TO service_role;
+CREATE FUNCTION public.credit_quiz_answer(p_hash text,p_question text,p_correct boolean) RETURNS SETOF public.quiz_players LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$ DECLARE pid uuid; added integer; BEGIN SELECT player_id INTO pid FROM public.quiz_guest_sessions WHERE token_hash=p_hash; IF pid IS NULL THEN RAISE EXCEPTION 'Invalid player session'; END IF; IF p_correct THEN INSERT INTO public.quiz_correct_answers(player_id,question_id) VALUES(pid,p_question) ON CONFLICT DO NOTHING; GET DIAGNOSTICS added = ROW_COUNT; IF added=1 THEN UPDATE public.quiz_players SET score=score+1 WHERE id=pid; END IF; END IF; RETURN QUERY SELECT * FROM public.quiz_players WHERE id=pid; END; $$;
+REVOKE ALL ON FUNCTION public.credit_quiz_answer(text,text,boolean) FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.credit_quiz_answer(text,text,boolean) TO service_role;

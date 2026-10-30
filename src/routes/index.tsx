@@ -5,6 +5,9 @@ import capturedCSS from "../styles/site.css?raw";
 import halloweenBanner from "../assets/halloween-banner.jpg";
 import { Button } from "../components/ui/button";
 import { ArrowUpRight, Check, Ghost, Moon, Sparkles, Trophy } from "lucide-react";
+import { useServerFn } from '@tanstack/react-start';
+import { supabase } from '@/integrations/supabase/client';
+import { registerPlayer, creditAnswer } from '@/lib/leaderboard.functions';
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -20,6 +23,48 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const register = useServerFn(registerPlayer);
+  const credit = useServerFn(creditAnswer);
+  const [player, setPlayer] = useState<{ id: string; nickname: string; score: number } | null>(null);
+  const [guestToken, setGuestToken] = useState<string | null>(null);
+  const [nickname, setNickname] = useState('');
+  const [ready, setReady] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [ranking, setRanking] = useState<{ id: string; nickname: string; score: number }[]>([]);
+  const [rankingError, setRankingError] = useState(false);
+  const refreshRanking = async () => {
+    const result = await supabase.from('quiz_players').select('id,nickname,score').order('score', { ascending: false }).order('created_at', { ascending: true }).limit(50);
+    setRankingError(Boolean(result.error));
+    if (result.data) setRanking(result.data);
+  };
+  useEffect(() => {
+    let active = true;
+    try {
+      const saved = JSON.parse(localStorage.getItem('spookie-player') ?? 'null');
+      if (saved?.token && saved?.player?.id) { setGuestToken(saved.token); setPlayer(saved.player); }
+    } catch { /* A new player can register when storage is unavailable. */ }
+    setReady(true);
+    void refreshRanking();
+    const interval = setInterval(() => { if (active) void refreshRanking(); }, 15000);
+    return () => { active = false; clearInterval(interval); };
+  }, []);
+  const savePlayer = (next: { id: string; nickname: string; score: number }, token: string) => {
+    setPlayer(next);
+    try { localStorage.setItem('spookie-player', JSON.stringify({ token, player: next })); } catch { /* Optional persistence. */ }
+  };
+  const submitAnswer = async (index: number) => {
+    if (!question || selected !== null || busy || !guestToken) return;
+    setBusy(true); setError('');
+    try {
+      const updated = await credit({ data: { token: guestToken, questionId: question.id, option: index } });
+      savePlayer(updated, guestToken);
+      setSelected(index);
+      if (index === question.correctIndex) setCorrect(value => value + 1);
+      await refreshRanking();
+    } catch (e) { setError(e instanceof Error ? e.message : 'No se pudo guardar la respuesta. Intenta de nuevo.'); }
+    finally { setBusy(false); }
+  };
   const [screen, setScreen] = useState<"home" | "quiz" | "topicResult" | "finalResult">("home");
   const [topicId, setTopicId] = useState<string | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -50,7 +95,15 @@ function Index() {
     <>
       <style>{capturedCSS}</style>
       <div className="spookie-app" id="app">
-        <header className="season-header"><div className="season-brand"><Ghost aria-hidden="true" /><span>Spookie Season</span></div><span className="season-header-label"><Moon size={14} /> Halloween quiz</span></header>
+        <header className="season-header"><div className="season-brand"><Ghost aria-hidden="true" /><span>Spookie Season</span></div><span className="season-header-label">{player ? <><Ghost size={14} /> {player.nickname} · {player.score} aciertos</> : <><Moon size={14} /> Halloween quiz</>}</span></header>
+        {ready && !player && <div className="nickname-overlay"><form className="nickname-dialog" aria-labelledby="nickname-heading" onSubmit={async event => {
+          event.preventDefault(); if (busy) return; setBusy(true); setError('');
+          try {
+            const result = await register({ data: { nickname } });
+            setGuestToken(result.token); savePlayer(result.player, result.token); storeScores({}); await refreshRanking();
+          } catch (e) { setError(e instanceof Error ? e.message : 'No se pudo guardar el apodo.'); }
+          finally { setBusy(false); }
+        }}><Ghost size={36} /><h2 id="nickname-heading">¿Cómo te llamamos?</h2><label htmlFor="nickname">Tu apodo público</label><input id="nickname" autoFocus autoComplete="nickname" minLength={2} maxLength={24} required value={nickname} onChange={event => setNickname(event.target.value)} placeholder="Tu apodo" /><Button variant="quiz" size="quiz" className="btn btn--primary" type="submit" disabled={busy}>{busy ? 'Guardando…' : 'Entrar a jugar'}</Button>{error && <p role="alert">{error}</p>}</form></div>}
         {screen === "home" && <main className="season-home">
           <section className="season-hero">
             <img src={halloweenBanner} width={1536} height={512} alt="Glowing pumpkins, a friendly ghost, and a black cat beneath a Halloween moon" />
@@ -64,11 +117,13 @@ function Index() {
             {topics.map((item, index) => <Button variant="quiz" size="quiz" key={item.id} onClick={() => startTopic(item.id)} data-topic={item.id} className={`topic-card topic-card-restored${item.id in scores ? " topic-card--done" : ""}`} type="button">
               <div className="topic-top"><span className="topic-card__icon">{item.icon}</span><span className="topic-number">0{index + 1}</span></div>
               <span className="topic-card__title">{item.title}</span>
-              <span className="topic-card__author">By {item.author}</span>
               <div className="topic-bottom"><span className={`topic-card__score${item.id in scores ? "" : " topic-card__score--pending"}`}>{item.id in scores ? <><Check size={13} /> {scores[item.id]}/5</> : "Not played"}</span><ArrowUpRight size={18} /></div>
             </Button>)}
           </div>
           {completed === topics.length ? <Button variant="quiz" size="quiz" type="button" className="btn btn--primary" onClick={() => setScreen("finalResult")}>See final result</Button> : completed > 0 && <p className="progress-hint">{completed} of {topics.length} topics completed</p>}
+          </section>
+          <section className="season-leaderboard"><div className="season-section-heading"><h2><Trophy size={20} /> Clasificación</h2><span>Aciertos únicos · /20</span></div>
+            {rankingError ? <p role="alert">No se pudo cargar la clasificación. <Button variant="quiz" size="quiz" onClick={() => void refreshRanking()}>Reintentar</Button></p> : ranking.length === 0 ? <p className="lede">La primera posición está esperando a su jugador.</p> : <table><thead><tr><th scope="col">Puesto</th><th scope="col">Jugador</th><th scope="col">Aciertos</th></tr></thead><tbody>{ranking.map((row, index) => <tr key={row.id} className={row.id === player?.id ? 'ranking-self' : ''}><td>{index + 1}</td><td>{row.nickname}{row.id === player?.id && <span> · Tú</span>}</td><td>{row.score}<span> / 20</span></td></tr>)}</tbody></table>}
           </section>
           <footer className="season-footer"><Ghost size={14} /><span>A few facts. A few frights. A good time.</span></footer>
         </main>}
@@ -77,10 +132,9 @@ function Index() {
           <p className="quiz-progress">Question {questionIndex + 1} / {topic.questions.length}</p>
           <div className="question-progress" aria-label={`Question ${questionIndex + 1} of 5`}>{topic.questions.map((item, index) => <span key={item.id} className={index <= questionIndex ? "is-active" : ""} />)}</div>
           <h1 className="question">{question.text}</h1>
-          <div className="options">{question.options.map((option, index) => <Button variant="quiz" size="quiz" key={option} type="button" disabled={selected !== null} className={`option${selected !== null ? ` option--locked${index === question.correctIndex ? " option--correct" : index === selected ? " option--wrong" : ""}` : ""}`} onClick={() => {
-            if (selected !== null) return;
-            setSelected(index); if (index === question.correctIndex) setCorrect(value => value + 1);
-          }}><span className="option__letter">{String.fromCharCode(65 + index)}</span><span className="option__text">{option}</span></Button>)}</div>
+          <div className="options">{question.options.map((option, index) => <Button variant="quiz" size="quiz" key={option} type="button" disabled={selected !== null || busy} className={`option${selected !== null ? ` option--locked${index === question.correctIndex ? " option--correct" : index === selected ? " option--wrong" : ""}` : ""}`} onClick={() => void submitAnswer(index)}><span className="option__letter">{String.fromCharCode(65 + index)}</span><span className="option__text">{option}</span></Button>)}</div>
+          {busy && <p className="lede" role="status">Guardando respuesta…</p>}
+          {error && <p role="alert">{error}</p>}
           {selected !== null && <>
             <div className={`feedback ${selected === question.correctIndex ? "feedback--ok" : "feedback--no"}`} aria-live="polite"><p className="feedback__label">{selected === question.correctIndex ? "Correct!" : "Not quite"}</p><p className="feedback__text">{question.explanation}</p></div>
             <Button variant="quiz" size="quiz" type="button" className="btn btn--primary" onClick={() => {
