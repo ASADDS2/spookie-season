@@ -5,5 +5,5 @@
 - [x] Verify page routing and successful build.
 
 # Design refresh
-- [ ] Improve the Halloween artwork, layout, topic cards, and quiz presentation without changing the content or scoring.
-- [ ] Verify the refreshed page and quiz on desktop and phone.
+- [x] Improve the Halloween artwork, layout, topic cards, and quiz presentation without changing the content or scoring.
+- [x] Verify the refreshed page and quiz on desktop and phone.
