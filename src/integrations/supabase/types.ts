@@ -14,13 +14,108 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      quiz_correct_answers: {
+        Row: {
+          player_id: string
+          question_id: string
+        }
+        Insert: {
+          player_id: string
+          question_id: string
+        }
+        Update: {
+          player_id?: string
+          question_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_correct_answers_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "quiz_players"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quiz_guest_sessions: {
+        Row: {
+          player_id: string
+          token_hash: string
+        }
+        Insert: {
+          player_id: string
+          token_hash: string
+        }
+        Update: {
+          player_id?: string
+          token_hash?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_guest_sessions_player_id_fkey"
+            columns: ["player_id"]
+            isOneToOne: false
+            referencedRelation: "quiz_players"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quiz_players: {
+        Row: {
+          created_at: string
+          id: string
+          nickname: string
+          score: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          nickname: string
+          score?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          nickname?: string
+          score?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      credit_quiz_answer: {
+        Args: { p_correct: boolean; p_hash: string; p_question: string }
+        Returns: {
+          created_at: string
+          id: string
+          nickname: string
+          score: number
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "quiz_players"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      register_quiz_guest: {
+        Args: { p_hash: string; p_nickname: string }
+        Returns: {
+          created_at: string
+          id: string
+          nickname: string
+          score: number
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "quiz_players"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
     }
     Enums: {
       [_ in never]: never
