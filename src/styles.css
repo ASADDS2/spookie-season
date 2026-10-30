@@ -270,3 +270,22 @@ body:has(.spookie-app) { background: var(--background); color: var(--foreground)
   #app .question { font-size: 21px; }
 }
 @media (prefers-reduced-motion: reduce) { #app .screen { animation: none; } #app .topic-card { transition: none; } #app .topic-card:hover { transform: none; } }
+
+#app .nickname-overlay { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 20px; background: color-mix(in oklch, var(--background) 92%, transparent); backdrop-filter: blur(8px); }
+#app .nickname-dialog { width: 100%; max-width: 380px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 18px; box-shadow: var(--season-shadow); }
+#app .nickname-dialog > svg { color: var(--primary); }
+#app .nickname-dialog h2 { margin: 0; font-size: 25px; }
+#app .nickname-dialog label { font-size: 13px; color: var(--muted-foreground); }
+#app .nickname-dialog input { background: var(--background); color: var(--foreground); border: 1px solid var(--border); padding: 12px; border-radius: 6px; font: inherit; width: 100%; }
+#app .nickname-dialog input:focus { outline: 2px solid var(--primary); outline-offset: 2px; }
+#app .season-leaderboard { margin-top: 36px; padding-top: 26px; border-top: 1px solid var(--border); }
+#app .season-leaderboard h2 { display: flex; align-items: center; gap: 10px; }
+#app .season-leaderboard h2 svg { color: var(--primary); }
+#app .season-leaderboard table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+#app .season-leaderboard th { color: var(--muted-foreground); font-size: 12px; font-weight: 700; padding: 12px; border-bottom: 1px solid var(--border); }
+#app .season-leaderboard td { padding: 15px 12px; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; }
+#app .season-leaderboard th:last-child, #app .season-leaderboard td:last-child { text-align: right; }
+#app .season-leaderboard td span { color: var(--muted-foreground); font-size: 12px; }
+#app .ranking-self { background: color-mix(in oklch,var(--primary) 10%,var(--background)); }
+#app .ranking-self td:first-child { color: var(--primary); font-weight: 800; }
+#app .season-header-label { overflow-wrap: anywhere; max-width: 50%; }
