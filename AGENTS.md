@@ -13,3 +13,5 @@
 - Store the source's literal quiz content in a browser-safe JSON module, separate from rendering, to preserve all original questions and answers.
 - Preserve the imported quiz's optional browser-local score storage and hydrate it after mount so server rendering remains consistent.
 - Apply the requested design refresh through scoped styles in the global design system while retaining the captured source stylesheet as reference; keep quiz behavior unchanged.
+- Nickname-only players use cryptographically random guest credentials hashed in a service-only session table, not anonymous Auth accounts; scoring functions validate this credential and correct answers before an atomic service-only RPC.
+- Leaderboard scores count each correctly answered question once per guest identity, preventing replay inflation; local quiz replay scores remain separate.
