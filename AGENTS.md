@@ -12,3 +12,4 @@
 - Keep imported page JSX and interactive quiz state in its route file; preserve the source classes and captured stylesheet to maintain visual fidelity.
 - Store the source's literal quiz content in a browser-safe JSON module, separate from rendering, to preserve all original questions and answers.
 - Preserve the imported quiz's optional browser-local score storage and hydrate it after mount so server rendering remains consistent.
+- Apply the requested design refresh through scoped styles in the global design system while retaining the captured source stylesheet as reference; keep quiz behavior unchanged.

@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import topics from "../lib/quiz-topics.json";
 import capturedCSS from "../styles/site.css?raw";
+import halloweenBanner from "../assets/halloween-banner.jpg";
+import { Button } from "../components/ui/button";
+import { ArrowUpRight, Check, Ghost, Moon, Sparkles, Trophy } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -46,24 +49,33 @@ function Index() {
   return (
     <>
       <style>{capturedCSS}</style>
-      <div className="flex justify-center min-h-dvh pt-[20px] pr-[16px] pb-[32px] pl-[16px]" id="app">
-        {screen === "home" && <main className="flex flex-col gap-[16px] max-w-[420px] w-full">
-          <p className="text-(--orange) text-[0.75rem] font-extrabold tracking-[0.12em] m-0 uppercase">Halloween Quiz</p>
-          <h1 className="text-(--orange-hot) font-[family-name:var(--display)] text-[clamp(2.2rem,9vw,3.2rem)] font-normal tracking-[0.02em] leading-[1.1] m-0">Spookie Season</h1>
-          <p className="lede">Pick a topic, answer 5 questions, and learn a short fact after each one.</p>
-          <div className="grid gap-[12px] grid-cols-[1fr_1fr]">
-            {topics.map(item => <button key={item.id} onClick={() => startTopic(item.id)} className={`topic-card topic-card-restored${item.id in scores ? " topic-card--done" : ""}`} type="button">
-              <span className="text-[1.8rem] leading-none">{item.icon}</span>
-              <span className="text-[1rem] font-extrabold">{item.title}</span>
-              <span className="text-(--muted) text-[0.8rem]">By {item.author}</span>
-              <span className={`topic-card__score${item.id in scores ? "" : " topic-card__score--pending"}`}>{item.id in scores ? `${scores[item.id]}/5` : "Not played"}</span>
-            </button>)}
+      <div className="spookie-app" id="app">
+        <header className="season-header"><div className="season-brand"><Ghost aria-hidden="true" /><span>Spookie Season</span></div><span className="season-header-label"><Moon size={14} /> Halloween quiz</span></header>
+        {screen === "home" && <main className="season-home">
+          <section className="season-hero">
+            <img src={halloweenBanner} width={1536} height={512} alt="Glowing pumpkins, a friendly ghost, and a black cat beneath a Halloween moon" />
+            <div className="season-hero-copy"><p className="eyebrow"><Sparkles size={13} /> A little curious. A little spooky.</p>
+            <h1 className="title">Spookie Season</h1>
+            <p className="lede">Pick a topic, answer 5 questions, and learn a short fact after each one.</p>
+            <div className="season-meta"><span>4 topics</span><span>20 questions</span><span>One spooky adventure</span></div></div>
+          </section>
+          <section className="season-topics"><div className="season-section-heading"><h2>Choose your chapter</h2><span><Trophy size={15} /> {completed} / 4 completed</span></div>
+          <div className="topic-grid">
+            {topics.map((item, index) => <Button variant="quiz" size="quiz" key={item.id} onClick={() => startTopic(item.id)} data-topic={item.id} className={`topic-card topic-card-restored${item.id in scores ? " topic-card--done" : ""}`} type="button">
+              <div className="topic-top"><span className="topic-card__icon">{item.icon}</span><span className="topic-number">0{index + 1}</span></div>
+              <span className="topic-card__title">{item.title}</span>
+              <span className="topic-card__author">By {item.author}</span>
+              <div className="topic-bottom"><span className={`topic-card__score${item.id in scores ? "" : " topic-card__score--pending"}`}>{item.id in scores ? <><Check size={13} /> {scores[item.id]}/5</> : "Not played"}</span><ArrowUpRight size={18} /></div>
+            </Button>)}
           </div>
           {completed === topics.length ? <button type="button" className="btn btn--primary" onClick={() => setScreen("finalResult")}>See final result</button> : completed > 0 && <p className="progress-hint">{completed} of {topics.length} topics completed</p>}
+          </section>
+          <footer className="season-footer"><Ghost size={14} /><span>A few facts. A few frights. A good time.</span></footer>
         </main>}
         {screen === "quiz" && topic && question && <main className="screen screen--quiz">
           <p className="eyebrow">{topic.icon} {topic.title}</p>
           <p className="quiz-progress">Question {questionIndex + 1} / {topic.questions.length}</p>
+          <div className="question-progress" aria-label={`Question ${questionIndex + 1} of 5`}>{topic.questions.map((item, index) => <span key={item.id} className={index <= questionIndex ? "is-active" : ""} />)}</div>
           <h1 className="question">{question.text}</h1>
           <div className="options">{question.options.map((option, index) => <button key={option} type="button" disabled={selected !== null} className={`option${selected !== null ? ` option--locked${index === question.correctIndex ? " option--correct" : index === selected ? " option--wrong" : ""}` : ""}`} onClick={() => {
             if (selected !== null) return;
