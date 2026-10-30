@@ -1,0 +1,885 @@
+{
+  "notes": "Single-screen quiz; no navigation menus, popups, media, canvas, pinned sections, or source motion. Home wheel input did not reveal additional sections on either layout. No static fallbacks or normal-flow substitutions. Source and preview were public, requiring no login. Early SSR clicks before hydration retried once.",
+  "checks": [
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "History",
+      "expected": "Original question and options",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-History-open.png",
+      "previewScreenshot": "preview-1280-History-open.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 1",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-History-answer-0.png",
+      "previewScreenshot": "preview-1280-History-answer-0.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 2",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-History-answer-1.png",
+      "previewScreenshot": "preview-1280-History-answer-1.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 3",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-History-answer-2.png",
+      "previewScreenshot": "preview-1280-History-answer-2.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 4",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-History-answer-3.png",
+      "previewScreenshot": "preview-1280-History-answer-3.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 5",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-History-answer-4.png",
+      "previewScreenshot": "preview-1280-History-answer-4.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Traditions",
+      "expected": "Original question and options",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Traditions-open.png",
+      "previewScreenshot": "preview-1280-Traditions-open.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 1",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Traditions-answer-0.png",
+      "previewScreenshot": "preview-1280-Traditions-answer-0.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 2",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Traditions-answer-1.png",
+      "previewScreenshot": "preview-1280-Traditions-answer-1.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 3",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Traditions-answer-2.png",
+      "previewScreenshot": "preview-1280-Traditions-answer-2.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 4",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Traditions-answer-3.png",
+      "previewScreenshot": "preview-1280-Traditions-answer-3.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 5",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Traditions-answer-4.png",
+      "previewScreenshot": "preview-1280-Traditions-answer-4.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Legends",
+      "expected": "Original question and options",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Legends-open.png",
+      "previewScreenshot": "preview-1280-Legends-open.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 1",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Legends-answer-0.png",
+      "previewScreenshot": "preview-1280-Legends-answer-0.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 2",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Legends-answer-1.png",
+      "previewScreenshot": "preview-1280-Legends-answer-1.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 3",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Legends-answer-2.png",
+      "previewScreenshot": "preview-1280-Legends-answer-2.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 4",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Legends-answer-3.png",
+      "previewScreenshot": "preview-1280-Legends-answer-3.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 5",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Legends-answer-4.png",
+      "previewScreenshot": "preview-1280-Legends-answer-4.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Around",
+      "expected": "Original question and options",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Around-open.png",
+      "previewScreenshot": "preview-1280-Around-open.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 1",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Around-answer-0.png",
+      "previewScreenshot": "preview-1280-Around-answer-0.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 2",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Around-answer-1.png",
+      "previewScreenshot": "preview-1280-Around-answer-1.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 3",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Around-answer-2.png",
+      "previewScreenshot": "preview-1280-Around-answer-2.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 4",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Around-answer-3.png",
+      "previewScreenshot": "preview-1280-Around-answer-3.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 5",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "1280-Around-answer-4.png",
+      "previewScreenshot": "preview-1280-Around-answer-4.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "See topic score",
+      "expected": "Topic score / home / aggregate score / reset scores respectively",
+      "observed": "Passed all four topics; aggregate score 2/20; replay resets all four cards",
+      "status": "passed",
+      "evidence": "preview-quiz-review.log"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Back to home",
+      "expected": "Topic score / home / aggregate score / reset scores respectively",
+      "observed": "Passed all four topics; aggregate score 2/20; replay resets all four cards",
+      "status": "passed",
+      "evidence": "preview-quiz-review.log"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "See final result",
+      "expected": "Topic score / home / aggregate score / reset scores respectively",
+      "observed": "Passed all four topics; aggregate score 2/20; replay resets all four cards",
+      "status": "passed",
+      "evidence": "preview-quiz-review.log"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        1280,
+        1800
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Play again",
+      "expected": "Topic score / home / aggregate score / reset scores respectively",
+      "observed": "Passed all four topics; aggregate score 2/20; replay resets all four cards",
+      "status": "passed",
+      "evidence": "preview-quiz-review.log"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "History",
+      "expected": "Original question and options",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-History-open.png",
+      "previewScreenshot": "preview-390-History-open.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 1",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-History-answer-0.png",
+      "previewScreenshot": "preview-390-History-answer-0.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 2",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-History-answer-1.png",
+      "previewScreenshot": "preview-390-History-answer-1.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 3",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-History-answer-2.png",
+      "previewScreenshot": "preview-390-History-answer-2.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 4",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-History-answer-3.png",
+      "previewScreenshot": "preview-390-History-answer-3.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 5",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-History-answer-4.png",
+      "previewScreenshot": "preview-390-History-answer-4.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Traditions",
+      "expected": "Original question and options",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Traditions-open.png",
+      "previewScreenshot": "preview-390-Traditions-open.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 1",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Traditions-answer-0.png",
+      "previewScreenshot": "preview-390-Traditions-answer-0.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 2",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Traditions-answer-1.png",
+      "previewScreenshot": "preview-390-Traditions-answer-1.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 3",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Traditions-answer-2.png",
+      "previewScreenshot": "preview-390-Traditions-answer-2.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 4",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Traditions-answer-3.png",
+      "previewScreenshot": "preview-390-Traditions-answer-3.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 5",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Traditions-answer-4.png",
+      "previewScreenshot": "preview-390-Traditions-answer-4.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Legends",
+      "expected": "Original question and options",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Legends-open.png",
+      "previewScreenshot": "preview-390-Legends-open.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 1",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Legends-answer-0.png",
+      "previewScreenshot": "preview-390-Legends-answer-0.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 2",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Legends-answer-1.png",
+      "previewScreenshot": "preview-390-Legends-answer-1.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 3",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Legends-answer-2.png",
+      "previewScreenshot": "preview-390-Legends-answer-2.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 4",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Legends-answer-3.png",
+      "previewScreenshot": "preview-390-Legends-answer-3.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 5",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Legends-answer-4.png",
+      "previewScreenshot": "preview-390-Legends-answer-4.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Around",
+      "expected": "Original question and options",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Around-open.png",
+      "previewScreenshot": "preview-390-Around-open.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 1",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Around-answer-0.png",
+      "previewScreenshot": "preview-390-Around-answer-0.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 2",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Around-answer-1.png",
+      "previewScreenshot": "preview-390-Around-answer-1.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 3",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Around-answer-2.png",
+      "previewScreenshot": "preview-390-Around-answer-2.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 4",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Around-answer-3.png",
+      "previewScreenshot": "preview-390-Around-answer-3.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Select first answer, question 5",
+      "expected": "Locked options, correct/wrong feedback, explanation, and next control",
+      "observed": "Matched source screen and controls",
+      "status": "passed",
+      "identicalPixels": true,
+      "sourceScreenshot": "390-Around-answer-4.png",
+      "previewScreenshot": "preview-390-Around-answer-4.png"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "See topic score",
+      "expected": "Topic score / home / aggregate score / reset scores respectively",
+      "observed": "Passed all four topics; aggregate score 2/20; replay resets all four cards",
+      "status": "passed",
+      "evidence": "preview-quiz-review.log"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Back to home",
+      "expected": "Topic score / home / aggregate score / reset scores respectively",
+      "observed": "Passed all four topics; aggregate score 2/20; replay resets all four cards",
+      "status": "passed",
+      "evidence": "preview-quiz-review.log"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "See final result",
+      "expected": "Topic score / home / aggregate score / reset scores respectively",
+      "observed": "Passed all four topics; aggregate score 2/20; replay resets all four cards",
+      "status": "passed",
+      "evidence": "preview-quiz-review.log"
+    },
+    {
+      "route": "/",
+      "viewport": [
+        390,
+        844
+      ],
+      "scrollContainer": "document",
+      "scrollPosition": 0,
+      "trigger": "Play again",
+      "expected": "Topic score / home / aggregate score / reset scores respectively",
+      "observed": "Passed all four topics; aggregate score 2/20; replay resets all four cards",
+      "status": "passed",
+      "evidence": "preview-quiz-review.log"
+    }
+  ]
+}

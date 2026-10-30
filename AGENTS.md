@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep imported page JSX and interactive quiz state in its route file; preserve the source classes and captured stylesheet to maintain visual fidelity.
+- Store the source's literal quiz content in a browser-safe JSON module, separate from rendering, to preserve all original questions and answers.
+- Preserve the imported quiz's optional browser-local score storage and hydrate it after mount so server rendering remains consistent.
