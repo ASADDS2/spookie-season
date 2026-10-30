@@ -1,0 +1,274 @@
+[
+  {
+    "id": "history",
+    "title": "History",
+    "author": "Abraham",
+    "icon": "🕯️",
+    "questions": [
+      {
+        "id": "history-1",
+        "text": "Which Celtic festival did Halloween come from?",
+        "options": [
+          "Yule",
+          "Samhain",
+          "Beltane",
+          "Imbolc"
+        ],
+        "correctIndex": 1,
+        "explanation": "Samhain marked the end of the harvest and the start of winter for the Celts. Halloween inherited several of its ideas about the otherworld."
+      },
+      {
+        "id": "history-2",
+        "text": "At what time of year was Samhain celebrated?",
+        "options": [
+          "At the start of spring",
+          "In the middle of summer",
+          "At the end of the harvest, around October 31",
+          "On December 25"
+        ],
+        "correctIndex": 2,
+        "explanation": "Samhain was held as the harvest ended, around October 31. People believed the veil between the living and the dead grew thinner that night."
+      },
+      {
+        "id": "history-3",
+        "text": "Which Christian feast overlapped these traditions and gave us the name All Hallows’ Eve?",
+        "options": [
+          "Christmas",
+          "All Saints’ Day",
+          "Ash Wednesday",
+          "Palm Sunday"
+        ],
+        "correctIndex": 1,
+        "explanation": "All Saints’ Day (All Hallows) is celebrated on November 1. The evening before, All Hallows’ Eve, was later shortened to Halloween."
+      },
+      {
+        "id": "history-4",
+        "text": "In Celtic tradition, what happened to the world of the dead during Samhain?",
+        "options": [
+          "It was sealed for a year",
+          "The veil between worlds grew thinner",
+          "The dead vanished forever",
+          "Only kings could speak"
+        ],
+        "correctIndex": 1,
+        "explanation": "People believed the boundary between the living and the spirits grew thinner at Samhain, so they held rites of protection and left offerings."
+      },
+      {
+        "id": "history-5",
+        "text": "What did the Celts use at Samhain to ward off or guide spirits?",
+        "options": [
+          "Bonfires and costumes",
+          "Church bells",
+          "Fireworks",
+          "Silver mirrors"
+        ],
+        "correctIndex": 0,
+        "explanation": "They lit bonfires and sometimes disguised themselves. Those practices later influenced jack-o’-lanterns and Halloween costumes."
+      }
+    ]
+  },
+  {
+    "id": "traditions",
+    "title": "Traditions",
+    "author": "Anyelith",
+    "icon": "🎃",
+    "questions": [
+      {
+        "id": "traditions-1",
+        "text": "Why are pumpkins carved at Halloween?",
+        "options": [
+          "To roast them on a bonfire",
+          "To mark houses that give out candy",
+          "To make lanterns that scare spirits away",
+          "To measure the year’s harvest"
+        ],
+        "correctIndex": 2,
+        "explanation": "Jack-o’-lanterns are set in windows or on porches to give light and, in folklore, to keep unfriendly spirits away."
+      },
+      {
+        "id": "traditions-2",
+        "text": "What are children asking for when they say “trick or treat”?",
+        "options": [
+          "A magic trick or a story",
+          "Candy, or else they will play a prank",
+          "Permission to come inside",
+          "A borrowed costume"
+        ],
+        "correctIndex": 1,
+        "explanation": "Trick-or-treat means a prank or a treat: the treat is candy. If there is none, the joke is a small (usually pretend) trick."
+      },
+      {
+        "id": "traditions-3",
+        "text": "Where does the custom of dressing up on this night come from?",
+        "options": [
+          "Carnival parades in Brazil",
+          "Celtic rites so spirits would not recognize people",
+          "Firefighter uniforms",
+          "A 1990s Hollywood fashion trend"
+        ],
+        "correctIndex": 1,
+        "explanation": "At Samhain people covered themselves or wore disguises to blend in with spirits. That idea became Halloween costumes."
+      },
+      {
+        "id": "traditions-4",
+        "text": "Before pumpkins, what did people in Ireland and Scotland mostly carve?",
+        "options": [
+          "Watermelons",
+          "Apples",
+          "Turnips",
+          "Pineapples"
+        ],
+        "correctIndex": 2,
+        "explanation": "Turnips were the usual lantern vegetable. In America the pumpkin was larger and easier to carve, so it replaced the turnip."
+      },
+      {
+        "id": "traditions-5",
+        "text": "Which colors are classically tied to Halloween?",
+        "options": [
+          "Blue and white",
+          "Green and gold",
+          "Pink and gray",
+          "Orange and black"
+        ],
+        "correctIndex": 3,
+        "explanation": "Orange recalls pumpkins and autumn; black recalls night and mystery. Together they became the holiday’s usual palette."
+      }
+    ]
+  },
+  {
+    "id": "legends",
+    "title": "Legends & mysteries",
+    "author": "Sebastian",
+    "icon": "👻",
+    "questions": [
+      {
+        "id": "legends-1",
+        "text": "Who was Stingy Jack in the jack-o’-lantern legend?",
+        "options": [
+          "A farmer who invented the pumpkin",
+          "A blacksmith who tricked the devil and wandered with a lantern",
+          "The first child to ask for candy",
+          "A Celtic king who banned fire"
+        ],
+        "correctIndex": 1,
+        "explanation": "Jack tricked the devil and, after death, was welcomed neither in heaven nor in hell. He wandered with a coal inside a turnip: the jack-o’-lantern."
+      },
+      {
+        "id": "legends-2",
+        "text": "In folklore, which creature has no reflection in a mirror?",
+        "options": [
+          "The werewolf",
+          "The witch",
+          "The vampire",
+          "The ogre"
+        ],
+        "correctIndex": 2,
+        "explanation": "Legend says vampires cast no reflection. It is one of the classic signs used to recognize them in stories and films."
+      },
+      {
+        "id": "legends-3",
+        "text": "What transformation is linked to the werewolf?",
+        "options": [
+          "It turns into a bat at nightfall",
+          "It becomes a wolf, especially under a full moon",
+          "It turns invisible in graveyards",
+          "It ages backward every October"
+        ],
+        "correctIndex": 1,
+        "explanation": "A werewolf (lycanthrope) shifts from human form to wolf. In many stories the trigger is a full moon."
+      },
+      {
+        "id": "legends-4",
+        "text": "Why are black cats tied to Halloween?",
+        "options": [
+          "Because they hunt pumpkins",
+          "Because superstitions linked them to witches and bad luck",
+          "Because they only come out on October 31",
+          "Because they are Ireland’s official symbol"
+        ],
+        "correctIndex": 1,
+        "explanation": "For centuries in Europe, people believed witches kept black cats or even turned into them. That superstition stuck to Halloween."
+      },
+      {
+        "id": "legends-5",
+        "text": "What is a “restless soul” in the legends of this night?",
+        "options": [
+          "A costume made of bedsheets",
+          "The spirit of someone who cannot find rest",
+          "A candle that will not go out",
+          "The still-living owner of a haunted house"
+        ],
+        "correctIndex": 1,
+        "explanation": "A restless soul is a ghost that has not been able to move on. Halloween stories say those presences draw closer to the living."
+      }
+    ]
+  },
+  {
+    "id": "world",
+    "title": "Around the world",
+    "author": "Daniel",
+    "icon": "🌎",
+    "questions": [
+      {
+        "id": "world-1",
+        "text": "When is Día de Muertos celebrated in Mexico?",
+        "options": [
+          "Only on October 31",
+          "On November 1 and 2",
+          "On December 24 and 25",
+          "On the first Monday in October"
+        ],
+        "correctIndex": 1,
+        "explanation": "November 1 honors deceased children and November 2 honors adults. The dates overlap All Saints’ Day and All Souls’ Day."
+      },
+      {
+        "id": "world-2",
+        "text": "What is placed on a Día de Muertos ofrenda?",
+        "options": [
+          "Only carved pumpkins",
+          "Photos, marigold flowers, food, and items the loved one enjoyed",
+          "Black candles only",
+          "Wrapped candy for the neighbors"
+        ],
+        "correctIndex": 1,
+        "explanation": "The ofrenda invites the soul to visit. It holds a portrait, cempasúchil marigolds, pan de muerto, water, salt, and things they liked in life."
+      },
+      {
+        "id": "world-3",
+        "text": "Which Japanese festival honors ancestors with lanterns and dances?",
+        "options": [
+          "Hanami",
+          "Setsubun",
+          "Obon",
+          "Tanabata"
+        ],
+        "correctIndex": 2,
+        "explanation": "Obon is a summer festival that welcomes ancestral spirits with altars, dances, and lanterns."
+      },
+      {
+        "id": "world-4",
+        "text": "In China, the Hungry Ghost Festival is dedicated to…",
+        "options": [
+          "Spirits who have no one to offer them rituals",
+          "The New Year dragon",
+          "Children asking for candy",
+          "The household cats"
+        ],
+        "correctIndex": 0,
+        "explanation": "It is believed that in that month, spirits without family walk the world. Food and incense are offered to calm and honor them."
+      },
+      {
+        "id": "world-5",
+        "text": "Besides Mexico, which country has a strong tradition of honoring the dead in early November?",
+        "options": [
+          "Australia, with “desert Halloween”",
+          "Guatemala, with the giant kites of Sumpango",
+          "Iceland, with the northern-lights festival",
+          "Canada, with the maple parade"
+        ],
+        "correctIndex": 1,
+        "explanation": "In Sumpango, Guatemala, giant kites are flown on November 1. Their colors and the wind are said to connect the living and the dead."
+      }
+    ]
+  }
+]
