@@ -20,7 +20,7 @@ export const registerPlayer = createServerFn({ method: 'POST' })
   });
 
 export const creditAnswer = createServerFn({ method: 'POST' })
-  .inputValidator(z.object({ token: z.string().length(72), questionId: z.string().max(40), option: z.number().int().min(0).max(3) }))
+  .inputValidator(z.object({ token: z.string().length(72), questionId: z.string().max(40), option: z.string().min(1).max(200) }))
   .handler(async ({ data }) => {
     const correct = isCorrectAnswer(data.questionId, data.option);
     const tokenHash = await hashToken(data.token);
