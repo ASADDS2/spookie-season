@@ -58,7 +58,7 @@ function Index() {
     if (!question || selected !== null || busy || !guestToken) return;
     setBusy(true); setError('');
     try {
-      const updated = await credit({ data: { token: guestToken, questionId: question.id, option: question.options[index] } });
+      const updated = await credit({ data: { token: guestToken, questionId: question.id, option: question.options[index]! } });
       savePlayer(updated, guestToken);
       setSelected(index);
       if (index === question.correctIndex) setCorrect(value => value + 1);

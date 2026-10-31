@@ -13,8 +13,9 @@ function shuffle<T>(items: readonly T[]): T[] {
 
 export function shuffleQuestions(questions: readonly QuizQuestion[]): QuizQuestion[] {
   return shuffle(questions).map(question => {
+    const correct = question.options[question.correctIndex]!;
     const options = shuffle(question.options);
-    return { ...question, options, correctIndex: options.indexOf(question.options[question.correctIndex]) };
+    return { ...question, options, correctIndex: options.indexOf(correct) };
   });
 }
 
