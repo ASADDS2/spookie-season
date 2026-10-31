@@ -8,6 +8,7 @@ import { ArrowUpRight, Check, Ghost, Moon, Sparkles, Trophy } from "lucide-react
 import { useServerFn } from '@tanstack/react-start';
 import { supabase } from '@/integrations/supabase/client';
 import { registerPlayer, creditAnswer } from '@/lib/leaderboard.functions';
+import { shuffleQuestions, type QuizQuestion } from '@/lib/leaderboard-rules';
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -57,7 +58,7 @@ function Index() {
     if (!question || selected !== null || busy || !guestToken) return;
     setBusy(true); setError('');
     try {
-      const updated = await credit({ data: { token: guestToken, questionId: question.id, option: index } });
+      const updated = await credit({ data: { token: guestToken, questionId: question.id, option: question.options[index]! } });
       savePlayer(updated, guestToken);
       setSelected(index);
       if (index === question.correctIndex) setCorrect(value => value + 1);
@@ -83,11 +84,14 @@ function Index() {
     setScores(next);
     try { localStorage.setItem("spookie-season-scores", JSON.stringify(next)); } catch { /* Storage is optional. */ }
   };
+  const [round, setRound] = useState<QuizQuestion[]>([]);
   const startTopic = (id: string) => {
+    const selectedTopic = topics.find(item => item.id === id);
+    setRound(selectedTopic ? shuffleQuestions(selectedTopic.questions) : []);
     setTopicId(id); setQuestionIndex(0); setSelected(null); setCorrect(0); setScreen("quiz");
   };
   const topic = topics.find(item => item.id === topicId);
-  const question = topic?.questions[questionIndex];
+  const question = round[questionIndex];
   const completed = topics.filter(item => item.id in scores).length;
   const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
   const title = total <= 7 ? "Skittish Newbie" : total <= 13 ? "Witch's Apprentice" : total <= 17 ? "Ghost Hunter" : "Master of the Beyond";
@@ -129,8 +133,8 @@ function Index() {
         </main>}
         {screen === "quiz" && topic && question && <main className="screen screen--quiz">
           <p className="eyebrow">{topic.icon} {topic.title}</p>
-          <p className="quiz-progress">Question {questionIndex + 1} / {topic.questions.length}</p>
-          <div className="question-progress" aria-label={`Question ${questionIndex + 1} of 5`}>{topic.questions.map((item, index) => <span key={item.id} className={index <= questionIndex ? "is-active" : ""} />)}</div>
+          <p className="quiz-progress">Question {questionIndex + 1} / {round.length}</p>
+          <div className="question-progress" aria-label={`Question ${questionIndex + 1} of ${round.length}`}>{round.map((item, index) => <span key={item.id} className={index <= questionIndex ? "is-active" : ""} />)}</div>
           <h1 className="question">{question.text}</h1>
           <div className="options">{question.options.map((option, index) => <Button variant="quiz" size="quiz" key={option} type="button" disabled={selected !== null || busy} className={`option${selected !== null ? ` option--locked${index === question.correctIndex ? " option--correct" : index === selected ? " option--wrong" : ""}` : ""}`} onClick={() => void submitAnswer(index)}><span className="option__letter">{String.fromCharCode(65 + index)}</span><span className="option__text">{option}</span></Button>)}</div>
           {busy && <p className="lede" role="status">Guardando respuesta…</p>}
@@ -138,9 +142,9 @@ function Index() {
           {selected !== null && <>
             <div className={`feedback ${selected === question.correctIndex ? "feedback--ok" : "feedback--no"}`} aria-live="polite"><p className="feedback__label">{selected === question.correctIndex ? "Correct!" : "Not quite"}</p><p className="feedback__text">{question.explanation}</p></div>
             <Button variant="quiz" size="quiz" type="button" className="btn btn--primary" onClick={() => {
-              if (questionIndex === topic.questions.length - 1) { storeScores({ ...scores, [topic.id]: correct }); setScreen("topicResult"); }
+              if (questionIndex === round.length - 1) { storeScores({ ...scores, [topic.id]: correct }); setScreen("topicResult"); }
               else { setQuestionIndex(value => value + 1); setSelected(null); }
-            }}>{questionIndex === topic.questions.length - 1 ? "See topic score" : "Next"}</Button>
+            }}>{questionIndex === round.length - 1 ? "See topic score" : "Next"}</Button>
           </>}
         </main>}
         {screen === "topicResult" && topic && <main className="screen screen--result">
